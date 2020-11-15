@@ -1,4 +1,12 @@
-var saveBtn = $("saveBtn");
+var saveBtn = document.querySelector(".saveBtn");
+var descriptionInput = document.querySelector(".description");
+
+
+saveBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+
+})
+
 // gets current date and time with no parameters
 var now = moment();
 var currentHour = now.format("H");
@@ -6,13 +14,13 @@ var currentHour = now.format("H");
 // Get the current day displayed in jumbotron header
 $("#currentDay").text(now.format("dddd, MMMM Do"));
 
-var hours = [9,10,11,12,13,14,15,16,17];
+var hours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-console.log(now.format("H"));
+// console.log(now.format("H"));
 
 // loops through 'hours' array, applies 'past', 'present', or 'future' class depending on currentHour
 for (var i = 0; i < hours.length; i++) {
-    
+
     if (i > currentHour) {
 
         $("textarea").addClass("past").removeClass("present", "future");
@@ -24,12 +32,15 @@ for (var i = 0; i < hours.length; i++) {
     } else if (i < currentHour) {
 
         $("textarea").addClass("future").removeClass("present", "past");
-        
+
     }
 
 }
 
+var description = descriptionInput.value.trim();
 
+// console.log(typeof description);
+localStorage.setItem("todo", description);
 
 /* function handleFormSubmit(event) {
     event.preventDefault();
